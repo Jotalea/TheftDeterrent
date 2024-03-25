@@ -1,4 +1,4 @@
-# TheftDeterrent
+# Theft Deterrent
 Links de descarga para Theft Deterrent (Agent, Client, Guardian, Daemon) e instrucciones de cómo instalarlo.
 
 # Instrucciones
