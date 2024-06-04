@@ -29,7 +29,7 @@ Acá podés [**instalar los paquetes manualmente**](https://github.com/Jotalea/T
 1. Abrir una terminal
 2. Ejecutar este comando:
 ```sudo apt install wget && mkdir ~/tda && cd ~/tda && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient_6.0.0.11.huayra10_amd64.deb```
-3. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalacion)
+3. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
 
 ### Instalar los paquetes manualmente
 1. Descargar los 4 archivos que terminan en .deb que están disponibles en este repositorio.
@@ -42,7 +42,7 @@ Acá podés [**instalar los paquetes manualmente**](https://github.com/Jotalea/T
    ```sudo dpkg -i theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb```
 6. Instalar el agente con
     ```sudo dpkg -i theftdeterrentclient_6.0.0.11.huayra10_amd64.deb```
-7. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalacion)
+7. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
 
 ### Post-instalación
 1. Reiniciar (recomendado, opcional)
