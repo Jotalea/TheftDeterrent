@@ -12,22 +12,23 @@ Links de descarga para Theft Deterrent (Agent, Client, Guardian, Daemon) e instr
 7. Vas a la parte de configuración, y ponés para que el servidor sea `citd.dgp.educ.ar`. Si con ese servidor no funcionó, intentá con `tds.educacion.gob.ar`.
 
 ## Huayra Linux
+Funciona en Huayra 5 y Huayra 6, pero no en Huayra 6.5. Para esta versión, seguir las instrucciones para Debian.
 1. Abrir la configuración.
 2. Buscar la opción "Gestor de paquetes Synaptic" (o algo similar).
 3. Una vez ahí, poner en el buscador "theft" y ya te debería aparecer.
 4. Seleccionás las 4 que salen, dando doble click a la casilla.
 5. Le das a Instalar (o Install).
-6. Ejecutar en la terminal el comando ```theftdeterrentclient``` para verificar que se instaló.
-7. Ir a la configuración del programa (dentro del mismo) y fijar el servidor a `citd.dgp.educ.ar`. Si con ese servidor no funcionó, intentá con `tds.educacion.gob.ar`.
+6. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
 
-Si no te funciona, podés seguir los pasos de abajo o ver [este repositorio](https://github.com/HuayraLinux/theftdeterrent6)
+Si no te funciona, podés seguir los pasos de abajo o ver [este repositorio](https://github.com/HuayraLinux/theftdeterrent6).
+Si estás buscando versiones de este programa para versiones anteriores de Huayra, mirá [este repositorio](https://github.com/HuayraLinux/theftdeterrent4).
 
 ## Debian Linux (incluye Mint, Ubuntu, Kali, Huayra, etc.)
 Acá podés [**instalar los paquetes manualmente**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#instalar-los-paquetes-manualmente) o [**ejecutar este comando que descarga e instala todos a la vez**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#descargar-e-instalar-todos-a-la-vez)
 
 ### Descargar e instalar todos a la vez
 1. Abrir una terminal
-2. Ejecutar este comando:
+2. Ejecutar este comando: (lo voy a mejorar)
 ```sudo apt install wget && mkdir ~/tda && cd ~/tda && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient_6.0.0.11.huayra10_amd64.deb```
 3. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
 
@@ -43,6 +44,11 @@ Acá podés [**instalar los paquetes manualmente**](https://github.com/Jotalea/T
 6. Instalar el agente con
     ```sudo dpkg -i theftdeterrentclient_6.0.0.11.huayra10_amd64.deb```
 7. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
+
+### Error al instalar el guardián
+Si te da error al intentar instalar `theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb`, podés intentar usar el parche hecho por [Maxelslasarte](https://huayra.educar.gob.ar/ayuda/?qa=user/Maxelslasarte), disponible en este repositorio como `theftdeterrentguardian_6.0.0.11.debian10_amd64.deb`.
+Lo que hace este parche básicamente es modificar la dependencia de Python =>2.6 a Python =>3.**, por lo que puede no ser una solución definitiva.
+El proceso para instalarlo sería lo mismo que ya mencioné anteriormente.
 
 ### Post-instalación
 1. Reiniciar (recomendado, opcional)
