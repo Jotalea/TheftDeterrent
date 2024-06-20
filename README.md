@@ -24,12 +24,12 @@ Si no te funciona, podés seguir los pasos de abajo o ver [este repositorio](htt
 Si estás buscando versiones de este programa para versiones anteriores de Huayra, mirá [este repositorio](https://github.com/HuayraLinux/theftdeterrent4).
 
 ## Debian Linux (incluye Mint, Ubuntu, Kali, Huayra, etc.)
-Acá podés [**instalar los paquetes manualmente**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#instalar-los-paquetes-manualmente) o [**ejecutar este comando que descarga e instala todos a la vez**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#descargar-e-instalar-todos-a-la-vez)
+Acá podés [**ejecutar el comando que descarga e instala todo**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#Usar-un-solo-comando) (recomendado) o [**instalar los paquetes manualmente**](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#instalar-los-paquetes-manualmente).
 
-### Descargar e instalar todos a la vez
+### Usar un solo comando
 1. Abrir una terminal
-2. Ejecutar este comando: (lo voy a mejorar)
-```sudo apt install wget && mkdir ~/tda && cd ~/tda && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentclient_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && wget https://github.com/Jotalea/TheftDeterrent/raw/main/theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient-lib_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentdaemon_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb && sudo dpkg -i theftdeterrentclient_6.0.0.11.huayra10_amd64.deb```
+2. Ejecutar este comando:
+```curl -fsSL https://raw.githubusercontent.com/Jotalea/TheftDeterrent/main/install.sh | sudo bash```
 3. Seguir con las instrucciones de [post instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#post-instalación)
 
 ### Instalar los paquetes manualmente
