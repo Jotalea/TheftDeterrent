@@ -47,8 +47,10 @@ Acá podés [**ejecutar el comando que descarga e instala todo**](https://github
 
 ### Error al instalar el guardián
 Si te da error al intentar instalar `theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb`, podés intentar usar el parche hecho por [Maxelslasarte](https://huayra.educar.gob.ar/ayuda/?qa=user/Maxelslasarte), disponible en este repositorio como `theftdeterrentguardian_6.0.0.11.debian10_amd64.deb`.
+
 Lo que hace este parche básicamente es modificar la dependencia de Python =>2.6 a Python =>3.**, por lo que puede no ser una solución definitiva.
 El proceso para instalarlo sería lo mismo que ya mencioné anteriormente.
+Esta opción viene incluída en el [script de instalación](https://github.com/Jotalea/TheftDeterrent/blob/main/README.md#Usar-un-solo-comando).
 
 ### Post-instalación
 1. Reiniciar (recomendado, opcional)
