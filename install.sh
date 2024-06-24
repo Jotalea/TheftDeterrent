@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Salir si algo male sal, ehh digo... sale mal. Es lo primero que sale mal.
+set -e
+
 # Variables
 URL_BASE="https://raw.githubusercontent.com/Jotalea/TheftDeterrent/main"
 FILES=(
@@ -9,7 +12,7 @@ FILES=(
     "theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb"
 )
 PATCHED_FILE="theftdeterrentguardian_6.0.0.11.debian10_amd64.deb"
-DIR=${1:-~/tda}
+DIR="$HOME/tda"
 LOG_FILE="tda_install_log.txt"
 
 # Función para manejar errores
@@ -21,7 +24,7 @@ handle_error() {
 # Verificar si se ejecuta como root
 check_root() {
     if [ "$EUID" -ne 0 ]; then
-        handle_error "Este script tiene que ejecutarse como root. Usá 'sudo ./install.sh'"
+        handle_error "Este script tiene que ejecutarse como root."
     fi
 }
 
@@ -66,6 +69,10 @@ download_files() {
         else
             echo "Descargando $FILE..."
             wget "$URL_BASE/$FILE" || handle_error "Descargar $FILE"
+
+            # Cambiar la propiedad y permisos del archivo descargado
+            chown "$USER:$USER" "$FILE"  # Cambiar propietario y grupo al usuario actual
+            chmod 644 "$FILE"            # Establecer permisos rw-r--r--
         fi
     done
 }
