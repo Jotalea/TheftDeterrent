@@ -1,0 +1,39 @@
+#!/bin/sh
+
+trap 'exit 1' 1 2 15
+
+export curdir=$(cd "$(dirname "$0")"; pwd)
+export curdir="/usr/share/theftdeterrentclient"
+
+export predir="theftdeterrentclient."
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+. ${curdir}/${predir}funcutil
+. ${curdir}/${predir}funcagent
+
+# check os
+fn_sysCheckosname
+. ${curdir}/${predir}funcagentui
+[ -f ${curdir}/${predir}funcagentui_${distosname} ] && . ${curdir}/${predir}funcagentui_${distosname}
+[ -f ${curdir}/${predir}funcagentui_${fullosname} ] && . ${curdir}/${predir}funcagentui_${fullosname}
+
+fn_syscreatelogdir
+
+echo "Remove agent..." >> ${td_log_dir}/${td_log_file}
+
+fn_sysinitdremove
+
+fn_agentuiremove
+
+fn_agentstop
+
+fn_agentuistop
+
+fn_agentuicleanup
+
+fn_returncode 0
+
+exit 0

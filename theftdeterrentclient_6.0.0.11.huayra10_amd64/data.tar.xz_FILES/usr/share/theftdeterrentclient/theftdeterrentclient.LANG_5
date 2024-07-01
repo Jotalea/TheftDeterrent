@@ -1,0 +1,17 @@
+﻿# Encoding
+encoding=vi-VN
+
+# Common dialog
+actiondone= hoàn tất.
+
+# Agent start/stop message
+startagentbegin=Đang khởi động dịch vụ tác nhân Chống trộm...
+stopagentbegin=Đang dừng dịch vụ tác nhân Chống trộm...
+
+# Agent status message
+statusagentstart=Trạng thái của dịch vụ tác nhân Chống trộm: dịch vụ đang chạy.
+statusagentstop=Trạng thái của dịch vụ tác nhân Chống trộm: dịch vụ đã bị dừng.
+statusagentnotfound=Trạng thái của dịch vụ tác nhân Chống trộm: không tìm thấy dịch vụ.
+
+# Agent reboot request message
+agentneedreboot=Thao tác có hiệu lực sau khi khởi động lại.

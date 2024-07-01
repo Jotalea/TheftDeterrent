@@ -1,0 +1,29 @@
+#!/bin/sh
+# /etc/init.d/theftdeterrentagent
+#
+
+touch /var/lock/theftdeterrentagent
+
+case "$1" in
+  start)
+    sh /usr/local/theftdeterrentclient/client/service_start
+    ;;
+  stop)
+    sh /usr/local/theftdeterrentclient/client/service_stop
+    ;;
+  restart)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  status)
+    sh /usr/local/theftdeterrentclient/client/service_status
+    [ "$?" = "0" ] || exit 1
+    ;;
+  *)
+    echo "Usage: service theftdeterrentagent {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+
+exit 0
