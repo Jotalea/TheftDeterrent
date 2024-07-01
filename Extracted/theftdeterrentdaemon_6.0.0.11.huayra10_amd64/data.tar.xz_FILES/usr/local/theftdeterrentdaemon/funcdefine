@@ -1,0 +1,44 @@
+#! /bin/sh
+
+fn_defclient()
+{
+    export td_service=tpmdaemon
+    export td_service_name=${td_service}
+}
+
+fn_defbase()
+{
+    export td_instconf_dir=`mktemp -d`
+    export td_instgconf_dir=/root
+}
+
+fn_defdaemon()
+{
+    export td_daemon_name=tpmdaemon
+    export td_daemon_root=/usr/sbin
+    export td_daemon_log=/var/log/tpmd.log
+}
+
+fn_deflog()
+{
+    export td_log_root=/tmp/log/theftdeterrentdaemon
+    export td_log_dir=${td_log_root}/${td_service}
+    export td_log_file=install.log
+    export td_log_running=running.log
+}
+
+fn_definitd()
+{
+    export td_initd_dir=/etc/init.d
+    export td_initd_local=/usr/local/theftdeterrentdaemon
+}
+
+fn_define()
+{
+    fn_defclient
+
+    fn_defbase
+    fn_defdaemon
+    fn_deflog
+    fn_definitd
+}

@@ -1,0 +1,26 @@
+#! /bin/sh
+
+export curdir="/usr/share/theftdeterrentclient"
+export predir="theftdeterrentdaemon."
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+. ${curdir}/${predir}funcutil
+
+fn_sysExitTrap
+
+. ${curdir}/${predir}funcreturn
+
+fn_sysinst
+
+
+. ${curdir}/${predir}funcdaemon
+
+fn_daemonstart
+
+#echo "Install Done." >> ${td_log_dir}/${td_log_file}
+
+fn_returncode 0
+

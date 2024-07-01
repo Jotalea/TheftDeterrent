@@ -1,0 +1,17 @@
+[Unit]
+Description=Theft Deterrent tpm daemon
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/theftdeterrent_tpmdaemon
+ExecStart=/usr/local/theftdeterrentdaemon/tpmdaemon start
+ExecStop=/usr/local/theftdeterrentdaemon/tpmdaemon stop
+ExecReload=/usr/local/theftdeterrentdaemon/tpmdaemon restart
+Type=forking
+KillMode=control-group
+Restart=on-failure
+RestartSec=10s
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

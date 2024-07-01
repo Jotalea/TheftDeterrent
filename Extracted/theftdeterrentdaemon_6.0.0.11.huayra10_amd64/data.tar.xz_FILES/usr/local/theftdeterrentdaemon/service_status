@@ -1,0 +1,23 @@
+#! /bin/sh
+
+export curdir="/usr/local/theftdeterrentdaemon"
+export predir=""
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+export td_log_file=service.log
+
+. ${curdir}/${predir}funcutil
+. ${curdir}/${predir}funcdaemon
+
+fn_syscreatelogdir
+
+echo "Check daemon status..." >> ${td_log_dir}/${td_log_file}
+
+if ( fn_daemonstatus ) ; then
+    return 0
+else
+    return 1
+fi

@@ -1,0 +1,133 @@
+#! /bin/sh
+
+. ${curdir}/${predir}funcreturn
+
+fn_sysinitdinst()
+{
+    if [ -f ${td_initd_local}/${td_service_name} ] ; then
+        systemctl --version 1>/dev/null 2>&1
+        if [ "$?" -eq 0 ] ; then
+            echo "init via systemctl" >> ${td_log_dir}/${td_log_file}
+            systemctl daemon-reload >> ${td_log_dir}/${td_log_file} 2>&1
+            systemctl enable theftdeterrent-tpmdaemon >> ${td_log_dir}/${td_log_file} 2>&1
+        else
+            echo "init via update-rc.d" >> ${td_log_dir}/${td_log_file}
+            ln -s ${td_initd_local}/${td_service_name} ${td_initd_dir}/${td_service_name} >> ${td_log_dir}/${td_log_file} 2>&1
+            #chmod 700 ${td_initd_dir}/${td_service_name} >> ${td_log_dir}/${td_log_file} 2>&1
+            update-rc.d ${td_service_name} defaults 18 >> ${td_log_dir}/${td_log_file} 2>&1
+        fi
+    fi
+}
+
+fn_sysinitdremove()
+{
+    systemctl --version 1>/dev/null 2>&1
+    if [ "$?" -eq 0 ] ; then
+        echo "remote init via systemctl" >> ${td_log_dir}/${td_log_file}
+        systemctl stop theftdeterrent-tpmdaemon >> ${td_log_dir}/${td_log_file} 2>&1
+        systemctl disable theftdeterrent-tpmdaemon >> ${td_log_dir}/${td_log_file} 2>&1
+    fi
+    if [ -f ${td_initd_dir}/${td_service_name} ] ; then
+		echo "remote init via update-rc.d" >> ${td_log_dir}/${td_log_file}
+        update-rc.d ${td_service_name} remove >> ${td_log_dir}/${td_log_file} 2>&1
+        rm ${td_initd_dir}/${td_service_name} >> ${td_log_dir}/${td_log_file} 2>&1
+    fi
+}
+
+fn_syspermission()
+{
+    #mkdir -p ${td_root_dir} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chown root:root -R ${td_root_dir} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chmod 777 -R ${td_root_dir}
+
+    mkdir -p ${td_initd_local} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chown root:root -R ${td_initd_local} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chmod 700 -R ${td_initd_local}
+
+    mkdir -p ${td_log_root} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chown root:root -R ${td_log_root} >> ${td_log_dir}/${td_log_file} 2>&1
+    #chmod 750 -R ${td_log_root}
+
+    #chmod 700 ${td_service_root}/${td_service_file}
+}
+
+fn_sysinst()
+{
+    fn_syspermission
+
+    fn_sysinitdremove
+    fn_sysinitdinst
+}
+
+fn_syscreateinstdir()
+{
+    mkdir -p ${base_root_dir} >> ${td_log_dir}/${td_log_file} 2>&1
+}
+
+fn_syscreatelogdir()
+{
+    _logfile=$1
+    [ "x${_logfile}" = "x" ] && _logfile=${td_log_file}
+    mkdir -p ${td_log_dir}
+    if [ -f ${td_log_dir}/${_logfile} ] ; then
+        num=1
+        while [ -f ${td_log_dir}/${_logfile}.${num} ]
+        do
+            oldnum=${num}
+            num=`expr ${oldnum} + 1` >> ${td_log_dir}/${_logfile} 2>&1
+        done
+        mv ${td_log_dir}/${_logfile} ${td_log_dir}/${_logfile}.${num}
+    fi
+    echo " ==== `date` ==== " > ${td_log_dir}/${_logfile}
+    chmod 766 ${td_log_dir}/${_logfile}
+}
+
+fn_syssetlang()
+{
+    mkdir -p ${td_root_dir}
+    if [ "x${instlang}" = "x" ] && [ ! -f ${td_lang_file} ] ; then
+        echo "en-US" > ${td_lang_file}
+    elif [ "x${instlang}" != "x" ] ; then
+        echo ${instlang} > ${td_lang_file}
+    fi
+}
+
+fn_syslang()
+{
+    tip=$1
+    if [ "$2" != "" ] ; then
+        instlang="$2"
+    elif [ -f ${td_lang_file} ] ; then
+        langsel=`cat ${td_lang_file}`
+        langnum=0
+        langfound=1
+        while read line
+        do
+            langfound=1
+            langraw=`echo ${line} | awk -F' ' '{print $3}'`
+            langnum=$((${langnum}+1));
+            [ "x${langsel}" = "x${langraw}" ] && break || langfound=0
+        done < ${curdir}/${predir}LANG_0
+        [ ${langfound} -eq 1 ] && instlang=${langnum} || instlang=1
+    else
+        instlang="1"
+    fi
+    sed -n "/^${tip}=/p" ${curdir}/${predir}LANG_${instlang} | sed "s/${tip}=//" | head -n 1
+}
+
+fn_sysNormalExitCallback()
+{
+    stty echo
+}
+
+fn_sysExceptExitCallback()
+{
+    fn_sysNormalExitCallback
+    fn_returncode 1
+}
+
+fn_sysExitTrap()
+{
+    #trap fn_sysExceptExitCallback 1 2 15
+    trap fn_sysNormalExitCallback 0 5
+}

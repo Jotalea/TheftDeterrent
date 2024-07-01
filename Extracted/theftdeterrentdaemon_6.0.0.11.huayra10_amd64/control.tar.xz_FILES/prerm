@@ -1,0 +1,26 @@
+#! /bin/sh
+
+trap 'exit 1' 1 2 15
+
+export curdir=$(cd "$(dirname "$0")"; pwd)
+export curdir="/usr/share/theftdeterrentclient"
+
+export predir="theftdeterrentdaemon."
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+. ${curdir}/${predir}funcutil
+. ${curdir}/${predir}funcdaemon
+
+fn_syscreatelogdir
+
+echo "Remove daemon..." >> ${td_log_dir}/${td_log_file}
+
+fn_sysinitdremove
+
+fn_daemonstop
+
+fn_returncode 0
+

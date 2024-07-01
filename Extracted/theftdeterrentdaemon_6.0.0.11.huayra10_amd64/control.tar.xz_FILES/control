@@ -1,0 +1,13 @@
+Package: theftdeterrentdaemon
+Source: theftdeterrent
+Version: 6.0.0.11.huayra10
+Architecture: amd64
+Maintainer: Fernando Toledo <ragnarok@docksud.com.ar>
+Installed-Size: 966
+Depends: theftdeterrentclient-lib (>= 6)
+Conflicts: huayra-tpm (<= 2.0.0.117), theftdeterrent4 (<= 6), theftdeterrentclient (<= 6.0.0.11.huayra7), theftdeterrentdaemon (<= 6.0.0.11.huayra5)
+Replaces: huayra-tpm (<= 2.0.0.117), theftdeterrent4 (<= 6), theftdeterrentclient (<= 6.0.0.11.huayra7), theftdeterrentdaemon (<= 6.0.0.11.huayra5)
+Section: non-free/utils
+Priority: extra
+Description: Intel Education Theft Deterrent client Huayra package
+ Paquete daemon de TheftDeterrent version 6

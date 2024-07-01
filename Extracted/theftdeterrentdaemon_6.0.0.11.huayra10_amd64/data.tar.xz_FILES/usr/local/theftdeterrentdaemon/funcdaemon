@@ -1,0 +1,54 @@
+#! /bin/sh
+
+# . ${curdir}/${predir}funcutil
+
+fn_daemonstatus() {
+    if [ ! -f ${td_daemon_root}/${td_daemon_name} ] ; then
+        #fn_syslang statusdaemonnotfound | tee -a ${td_log_dir}/${td_log_file}
+        return 1
+    fi
+    daemonid=`LANG=C ps -ef | grep "${td_daemon_root}/${td_daemon_name}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}'`
+    if [ "${daemonid}" != "" ] ; then
+        #fn_syslang statusdaemonstart | tee -a ${td_log_dir}/${td_log_file}
+        echo "Server started, PID is $daemonid" | tee -a ${td_log_dir}/${td_log_file} 
+        return 0
+    else
+        #fn_syslang statusdaemonstop | tee -a ${td_log_dir}/${td_log_file}
+		echo "Server stopped" | tee -a ${td_log_dir}/${td_log_file}
+        return 100
+    fi
+}
+
+fn_daemonstop() {
+    echo "Server stopping..." | tee -a ${td_log_dir}/${td_log_file}
+    daemonid=`LANG=C ps -ef | grep "${td_daemon_root}/${td_daemon_name}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}' | head -1`
+    if [ "${daemonid}" != "" ] ; then
+        #printf "`fn_syslang stopdaemonbegin`" | tee -a ${td_log_dir}/${td_log_file}
+        kill ${daemonid} >> ${td_log_dir}/${td_log_file} 2>&1 &
+        fn_daemonkill
+        #fn_syslang actiondone | tee -a ${td_log_dir}/${td_log_file}
+    fi
+    fn_daemonstatus
+}
+
+fn_daemonkill() {
+    sleep 5
+    daemonid=`LANG=C ps -ef | grep "${td_daemon_root}/${td_daemon_name}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}' | head -1`
+    if [ "${daemonid}" != "" ] ; then
+        kill -9 ${daemonid} >> ${td_log_dir}/${td_log_file} 2>&1 &
+        fn_daemonkill
+    fi
+}
+
+fn_daemonstart() {
+    fn_daemonstop
+
+    echo "Server starting..." | tee -a ${td_log_dir}/${td_log_file}
+    #printf "`fn_syslang startdaemonbegin`" | tee -a ${td_log_dir}/${td_log_file}
+
+    #chmod 700 ${td_daemon_root}/${td_daemon_name}
+
+    LC_ALL=C LANG=C nohup ${td_daemon_root}/${td_daemon_name} -f ${td_daemon_log} -l DEBUG >> ${td_log_dir}/${td_log_file} 2>&1 &
+    #fn_syslang actiondone | tee -a ${td_log_dir}/${td_log_file}
+    fn_daemonstatus
+}
