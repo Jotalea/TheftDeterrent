@@ -56,3 +56,9 @@ Esta opción viene incluída en el [script de instalación](https://github.com/J
 1. Reiniciar (recomendado, opcional)
 2. Ejecutar en la terminal el comando ```theftdeterrentclient``` para verificar que se instaló.
 3. Ir a la configuración del programa (dentro del mismo) y fijar el servidor a `citd.dgp.educ.ar`. Si con ese servidor no funcionó (probablemente porque tu computadora no es una Juana Manso), intentá con `tds.educacion.gob.ar`.
+
+Acá lo configurás
+![Pestaña de configuración de TDA](https://github.com/Jotalea/TheftDeterrent/assets/67925603/d91dac51-2cc4-4ff1-a9b3-2714ee34069d)
+
+Se debería ver algo similar a esto
+![Pestaña principal de TDA](https://github.com/Jotalea/TheftDeterrent/assets/67925603/a22b1b2b-b3fc-4f65-8ba1-6793631d00e6)
