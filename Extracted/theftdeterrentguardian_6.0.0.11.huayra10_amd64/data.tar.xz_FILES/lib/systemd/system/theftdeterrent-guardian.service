@@ -1,0 +1,17 @@
+[Unit]
+Description=Theft Deterrent guardian daemon
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/theftdeterrent_guardian
+ExecStart=/usr/local/theftdeterrentclient/guardian/theftdeterrentguardian start
+ExecStop=/usr/local/theftdeterrentclient/guardian/theftdeterrentguardian stop
+ExecReload=/usr/local/theftdeterrentclient/guardian/theftdeterrentguardian restart
+Type=simple
+KillMode=control-group
+Restart=on-failure
+RestartSec=10s
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,47 @@
+#! /bin/sh
+
+. ${curdir}/${predir}funcutil
+
+fn_guardianstatus() {
+    if [ ! -f ${td_service_root}/${td_service_file} ] ; then
+        fn_syslang statusguardiannotfound | tee -a ${td_log_dir}/${td_log_file}
+        return 1
+    fi
+    guardianid=`LANG=C ps -ef | grep "${td_service_root}/${td_service_file}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}'`
+    if [ "${guardianid}" != "" ] ; then
+        fn_syslang statusguardianstart | tee -a ${td_log_dir}/${td_log_file}
+        return 0
+    else
+        fn_syslang statusguardianstop | tee -a ${td_log_dir}/${td_log_file}
+        return 100
+    fi
+}
+
+fn_guardianstop() {
+    guardianid=`LANG=C ps -ef | grep "${td_service_root}/${td_service_file}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}' | head -1`
+    if [ "${guardianid}" != "" ] ; then
+        printf "`fn_syslang stopguardianbegin`" | tee -a ${td_log_dir}/${td_log_file}
+        kill ${guardianid} >> ${td_log_dir}/${td_log_file} 2>&1 &
+        fn_guardiankill
+        fn_syslang actiondone | tee -a ${td_log_dir}/${td_log_file}
+    fi
+}
+
+fn_guardiankill() {
+    sleep 5
+    guardianid=`LANG=C ps -ef | grep "${td_service_root}/${td_service_file}" | grep -v grep | tr -s ' ' | awk -F' ' '{print $2}' | head -1`
+    if [ "${guardianid}" != "" ] ; then
+        kill -9 ${guardianid} >> ${td_log_dir}/${td_log_file} 2>&1 &
+        fn_guardiankill
+    fi
+}
+
+fn_guardianstart() {
+    fn_guardianstop
+
+    printf "`fn_syslang startguardianbegin`" | tee -a ${td_log_dir}/${td_log_file}
+    fn_syscreatelogdir ${td_log_running}
+    #chmod 700 ${td_service_root}/${td_service_file}
+    LC_ALL=C LANG=C nohup ${td_service_root}/${td_service_file} >> ${td_log_dir}/${td_log_running} 2>&1 &
+    fn_syslang actiondone | tee -a ${td_log_dir}/${td_log_file}
+}

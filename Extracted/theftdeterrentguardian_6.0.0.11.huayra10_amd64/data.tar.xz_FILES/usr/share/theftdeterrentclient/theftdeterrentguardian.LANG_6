@@ -1,0 +1,14 @@
+﻿# Encoding
+encoding=en-US
+
+# Common dialog
+actiondone= 完成。
+
+# Guardian start/stop message
+startguardianbegin=正在啟動 Theft Deterrent guardian 服務...
+stopguardianbegin=正在停止 Theft Deterrent guardian 服務...
+
+# Guardian status message
+statusguardianstart=Theft Deterrent guardian 服務的狀態: 服務正在執行中。
+statusguardianstop=Theft Deterrent guardian 服務的狀態: 服務已停止。
+statusguardiannotfound=Theft Deterrent guardian 服務的狀態: 找不到服務。

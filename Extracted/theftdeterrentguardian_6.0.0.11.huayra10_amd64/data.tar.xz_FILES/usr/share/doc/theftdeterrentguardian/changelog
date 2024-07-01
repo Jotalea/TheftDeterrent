@@ -1,0 +1,62 @@
+theftdeterrent (6.0.0.11.huayra10) unstable; urgency=medium
+
+  * Desactivar el random de la mac address de las red
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Fri, 07 May 2021 16:06:27 -0300
+
+theftdeterrent (6.0.0.11.huayra9) unstable; urgency=medium
+
+  * El client guarda la configuracion del idioma
+    en /opt/ThedftDeterrentclient/.tdcinstlang =( 
+    y el usuario debe tener permisos para escribir
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Tue, 30 Mar 2021 18:41:33 -0300
+
+theftdeterrent (6.0.0.11.huayra8) unstable; urgency=medium
+
+  * super repack
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Mon, 15 Mar 2021 19:14:25 -0300
+
+theftdeterrent (6.0.0.11.huayra7) unstable; urgency=medium
+
+  * dependencias de los otros paquetes
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Sat, 13 Mar 2021 15:38:56 -0300
+
+theftdeterrent (6.0.0.11.huayra6) unstable; urgency=medium
+
+  * sacando prerm 
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Sat, 13 Mar 2021 13:45:56 -0300
+
+theftdeterrent (6.0.0.11.huayra5) unstable; urgency=medium
+
+  * fix paths en scripts 
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Sat, 13 Mar 2021 13:29:00 -0300
+
+theftdeterrent (6.0.0.11.huayra4) unstable; urgency=medium
+
+  * fix install dirs 
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Sat, 13 Mar 2021 12:06:22 -0300
+
+theftdeterrent (6.0.0.11.huayra3) unstable; urgency=medium
+
+  * ajustando paths de funciones 
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Fri, 12 Mar 2021 15:47:16 -0300
+
+theftdeterrent (6.0.0.11.huayra2) unstable; urgency=medium
+
+  * revert del path de scripts 
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Fri, 12 Mar 2021 15:26:56 -0300
+
+theftdeterrent (6.0.0.11.huayra1) unstable; urgency=medium
+
+  * repack de theftdeterrent6
+
+ -- Fernando Toledo <ragnarok@docksud.com.ar>  Fri, 12 Mar 2021 12:36:34 -0300
+

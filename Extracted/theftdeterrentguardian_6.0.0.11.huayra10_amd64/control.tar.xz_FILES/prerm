@@ -1,0 +1,24 @@
+#! /bin/sh
+
+trap 'exit 1' 1 2 15
+
+export curdir="/usr/share/theftdeterrentclient"
+export predir="theftdeterrentguardian."
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+. ${curdir}/${predir}funcutil
+. ${curdir}/${predir}funcguardian
+
+fn_syscreatelogdir
+
+echo "Remove guardian..." >> ${td_log_dir}/${td_log_file}
+
+fn_sysinitdremove
+
+fn_guardianstop
+
+fn_returncode 0
+

@@ -1,0 +1,14 @@
+﻿# Encoding
+encoding=es-MX
+
+# Common dialog
+actiondone= Listo.
+
+# Guardian start/stop message
+startguardianbegin=Iniciando servicio de gardisto de Theft Deterrent...
+stopguardianbegin=Deteniendo servicio de gardisto de Theft Deterrent...
+
+# Guardian status message
+statusguardianstart=Estado de servicio de gardisto de Theft Deterrent: servicio en ejecución.
+statusguardianstop=Estado de servicio de gardisto de Theft Deterrent: servicio detenido.
+statusguardiannotfound=Estado de servicio de gardisto de Theft Deterrent: servicio no encontrado.

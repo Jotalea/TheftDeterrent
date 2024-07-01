@@ -1,0 +1,14 @@
+﻿# Encoding
+encoding=tr-TR
+
+# Common dialog
+actiondone= tamamlandı.
+
+# Guardian start/stop message
+startguardianbegin=Theft Deterrent vasi hizmeti başlatılıyor ...
+stopguardianbegin=Theft Deterrent vasi hizmeti durduruluyor ...
+
+# Guardian status message
+statusguardianstart=Theft Deterrent vasi hizmeti'nin durumu: Hizmet çalışıyor.
+statusguardianstop=Theft Deterrent vasi hizmeti'nin durumu: Hizmet durduruldu.
+statusguardiannotfound=Theft Deterrent vasi hizmeti'nin durumu: Hizmet bulunamadı.

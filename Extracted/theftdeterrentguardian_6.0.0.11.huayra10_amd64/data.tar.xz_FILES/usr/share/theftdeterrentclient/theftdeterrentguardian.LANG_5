@@ -1,0 +1,14 @@
+﻿# Encoding
+encoding=vi-VN
+
+# Common dialog
+actiondone= hoàn tất.
+
+# Guardian start/stop message
+startguardianbegin=Đang bắt đầu dịch vụ bảo vệ Chống trộm...
+stopguardianbegin=Đang dừng dịch vụ bảo vệ Chống trộm...
+
+# Guardian status message
+statusguardianstart=Trạng thái của dịch vụ bảo vệ Chống trộm: dịch vụ đang chạy.
+statusguardianstop=Trạng thái của dịch vụ bảo vệ Chống trộm: dịch vụ đã bị dừng.
+statusguardiannotfound=Trạng thái của dịch vụ bảo vệ Chống trộm: không tìm thấy dịch vụ.

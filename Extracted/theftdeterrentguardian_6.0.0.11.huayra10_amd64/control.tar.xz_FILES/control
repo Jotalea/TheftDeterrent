@@ -1,0 +1,13 @@
+Package: theftdeterrentguardian
+Source: theftdeterrent
+Version: 6.0.0.11.huayra10
+Architecture: amd64
+Maintainer: Fernando Toledo <ragnarok@docksud.com.ar>
+Installed-Size: 2392
+Pre-Depends: python (>= 2.6)
+Conflicts: huayra-tpm (<= 2.0.0.117), theftdeterrenguardian (<= 6.0.0.11.huayra4), theftdeterrent4 (<= 6), theftdeterrentdaemon (<= 6.0.0.11.huayra5)
+Replaces: huayra-tpm (<= 2.0.0.117), theftdeterrent4 (<= 6), theftdeterrentdaemon (<= 6.0.0.11.huayra5), theftdeterrentguardian (<= 6.0.0.11.huayra4)
+Section: non-free/utils
+Priority: extra
+Description: Theft Deterrent Plus guardian Huayra package
+ Paquete guardian de TheftDeterrent version 6
