@@ -1,0 +1,42 @@
+#!/bin/sh
+
+export curdir="/usr/share/theftdeterrentclient"
+
+export predir="theftdeterrentclient."
+
+. ${curdir}/${predir}funcdefine
+
+fn_define
+
+. ${curdir}/${predir}funcutil
+
+fn_sysExitTrap
+
+. ${curdir}/${predir}funcreturn
+
+fn_sysinst
+
+. ${curdir}/${predir}funcagent
+
+fn_agentstart
+
+# check os
+fn_sysCheckosname
+. ${curdir}/${predir}funcagentui
+[ -f ${curdir}/${predir}funcagentui_${distosname} ] && . ${curdir}/${predir}funcagentui_${distosname}
+[ -f ${curdir}/${predir}funcagentui_${fullosname} ] && . ${curdir}/${predir}funcagentui_${fullosname}
+
+fn_agentuistart
+fn_agentuipreinst
+
+#echo "Install Done." >> ${td_log_dir}/${td_log_file}
+
+fn_agentrebootreq
+
+mkdir -p /opt/TheftDeterrentclient/
+echo "es-MX" > /opt/TheftDeterrentclient/.tdcinstlang
+chmod 777 /opt/TheftDeterrentclient/.tdcinstlang
+
+fn_returncode 0
+
+exit 0

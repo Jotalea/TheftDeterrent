@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Theft Deterrent client
+Exec=/opt/TheftDeterrentclient/client/Theft_Deterrent_client.run
+Icon=/opt/TheftDeterrentclient/client/Theft_Deterrent_client.png
+Terminal=false
+Type=Application
+Categories=System;
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart-phase=1

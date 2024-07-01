@@ -1,0 +1,17 @@
+﻿# Encoding
+encoding=pt-BR
+
+# Common dialog
+actiondone= concluído.
+
+# Agent start/stop message
+startagentbegin=Iniciando o serviço de agente do Theft Deterrent...
+stopagentbegin=Parando o serviço de agente do Theft Deterrent...
+
+# Agent status message
+statusagentstart=Status do serviço de agente do Theft Deterrent: o serviço está em execução.
+statusagentstop=Status do serviço de agente do Theft Deterrent: o serviço está parado.
+statusagentnotfound=Status do serviço de agente do Theft Deterrent: o serviço não encontrado.
+
+# Agent reboot request message
+agentneedreboot=The operation takes effect after reboot.

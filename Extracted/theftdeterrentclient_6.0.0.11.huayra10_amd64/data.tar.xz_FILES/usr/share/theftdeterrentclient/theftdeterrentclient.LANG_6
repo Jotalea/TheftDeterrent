@@ -1,0 +1,17 @@
+﻿# Encoding
+encoding=zh-TW
+
+# Common dialog
+actiondone= 完成。
+
+# Agent start/stop message
+startagentbegin=正在啟動 Theft Deterrent 代理程式服務...
+stopagentbegin=正在停止 Theft Deterrent 代理程式服務...
+
+# Agent status message
+statusagentstart=Theft Deterrent 代理程式服務的狀態: 服務正在執行中。
+statusagentstop=Theft Deterrent 代理程式服務的狀態: 服務已停止。
+statusagentnotfound=Theft Deterrent 代理程式服務的狀態: 找不到服務。
+
+# Agent reboot request message
+agentneedreboot=此作業將在重新開機後生效。

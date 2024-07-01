@@ -1,0 +1,6 @@
+#!/bin/sh
+
+fn_returncode()
+{
+    exit $1
+}
