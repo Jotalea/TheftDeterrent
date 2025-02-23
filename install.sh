@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Salir si algo male sal
+# Salir si algo sale mal
 set -e
 
 # Variables predeterminadas
@@ -17,11 +17,24 @@ LOG_FILE="tda_install_log.txt"
 SCRIPT_VERSION=2
 USE_LOG=true
 CLEANUP=true
+INSTALL=true
+RUN_AFTER_INSTALL=false
 
 # Función para manejar errores
 handle_error() {
     echo "Error en el paso: $1" >&2
     exit 1
+}
+
+# Función para verificar Python 2.6
+check_python26() {
+    if command -v python2.6 >/dev/null 2>&1; then
+        echo "Python 2.6 está instalado."
+        return 0
+    else
+        echo "Python 2.6 no está instalado. Se forzará la instalación del paquete guardian con --force-depends."
+        return 1
+    fi
 }
 
 # Función de ayuda
@@ -35,6 +48,7 @@ show_help() {
     echo "  --mirror <URL>, -M <URL>               Permite usar un servidor distinto para descargar los archivos"
     echo "  --no-limpiar, --no-cleanup             Después de la instalación, no borra los archivos .deb que se usaron"
     echo "  --no-log                               Deshabilita el logging a $LOG_FILE"
+    echo "  --ejecutar, -E                         Ejecuta el programa después de la instalación"
     exit 0
 }
 
@@ -67,6 +81,9 @@ process_parameters() {
             --mirror | -M)
                 shift
                 URL_BASE="$1"
+                ;;
+            --ejecutar | -E)
+                RUN_AFTER_INSTALL=true
                 ;;
             *)
                 echo "Parámetro desconocido: $1"
@@ -103,7 +120,7 @@ check_dependencies() {
 
 # Verificar espacio en disco
 check_disk_space() {
-    local required_space_mb=50
+    local required_space_mb=100
     local available_space_mb=$(df "$DEFAULT_DIR" | tail -1 | awk '{print $4}')
     available_space_mb=$((available_space_mb / 1024))
 
@@ -137,14 +154,52 @@ download_files() {
 
 # Instalar archivos .deb
 install_files() {
+    local force_guardian=false
+
+    # Verificar si es necesario forzar la instalación
+    if ! check_python26; then
+        force_guardian=true
+    fi
+
     for FILE in "${FILES[@]}"; do
         if [ "$FILE" == "theftdeterrentguardian_6.0.0.11.huayra10_amd64.deb" ] && [ "$NEED_PATCH" == "true" ]; then
             FILE=$PATCHED_FILE
         fi
 
         echo "Instalando $FILE..."
-        sudo dpkg -i "$FILE" || handle_error "No se pudo instalar $FILE"
+
+        # Determinar si es el paquete guardian y forzar si es necesario
+        if [[ "$FILE" == *"theftdeterrentguardian"* ]]; then
+            if [ "$force_guardian" = true ]; then
+                echo "Forzando instalación con --force-depends..."
+                sudo dpkg --force-depends -i "$FILE" || handle_error "No se pudo instalar $FILE con --force-depends"
+            else
+                sudo dpkg -i "$FILE" || handle_error "No se pudo instalar $FILE"
+            fi
+        else
+            sudo dpkg -i "$FILE" || handle_error "No se pudo instalar $FILE"
+        fi
     done
+}
+
+# Agregar al PATH
+add_to_path() {
+    local bin_path="/usr/local/bin"
+    local script_path="/opt/TheftDeterrentClient/client/Theft_Deterrent_client.autorun"
+
+    if [[ -f "$script_path" ]]; then
+        echo "Agregando 'theftdeterrent' al PATH..."
+        sudo ln -sf "$script_path" "$bin_path/theftdeterrent" || handle_error "No se pudo crear el enlace simbólico"
+        echo "El comando 'theftdeterrent' ahora está disponible en el PATH."
+    else
+        handle_error "No se encontró el script en $script_path"
+    fi
+}
+
+# Ejecutar el programa
+run_program() {
+    echo "Ejecutando el programa..."
+    sudo /opt/TheftDeterrentClient/client/Theft_Deterrent_client.autorun || handle_error "No se pudo ejecutar el programa"
 }
 
 # Limpiar archivos .deb
@@ -178,6 +233,11 @@ download_files
 
 if [[ "$INSTALL" == true ]]; then
     install_files
+    add_to_path
+fi
+
+if [[ "$RUN_AFTER_INSTALL" == true ]]; then
+    run_program
 fi
 
 if [[ "$CLEANUP" == true ]]; then
